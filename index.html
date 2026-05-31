@@ -17,10 +17,13 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <div class="particle-field" aria-hidden="true">
+      <canvas id="particle-canvas"></canvas>
+    </div>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="AI as a Catalyst Copenhagen home">
-        <span class="brand-mark">AI</span>
-        <span class="brand-text">as a Catalyst<br>Copenhagen</span>
+      <a class="brand" href="#top" aria-label="MIT Critical Data">
+        <img class="brand-logo" src="assets/logo-mit-white.svg" alt="MIT">
+        <span class="brand-text"><span>Critical</span><span>Data</span></span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
         <a href="#about">About</a>
@@ -28,39 +31,80 @@
         <a href="#people">People</a>
         <a href="#apply">Apply</a>
       </nav>
+      <div class="nav-spacer" aria-hidden="true"></div>
     </header>
 
     <main id="top">
       <section class="hero section-grid">
+        <div class="hero-noise" aria-hidden="true"></div>
+        <div class="hero-glow hero-glow-top" aria-hidden="true"></div>
+        <div class="hero-glow hero-glow-bottom" aria-hidden="true"></div>
+        <svg class="copenhagen-lineart" viewBox="0 0 760 360" aria-hidden="true">
+          <g class="lineart-soft">
+            <path d="M34 287c72-18 121-18 185 0 69 20 129 18 202-4 88-26 167-20 284 21"></path>
+            <path d="M70 313c56-12 96-10 151 6 67 20 130 18 203-4 88-27 163-20 264 19"></path>
+          </g>
+          <g class="lineart-main">
+            <path d="M94 244V141l46-35 46 35v103"></path>
+            <path d="M116 244v-62h48v62"></path>
+            <path d="M218 244V126h76v118"></path>
+            <path d="M218 126l38-42 38 42"></path>
+            <path d="M243 244v-48h28v48"></path>
+            <path d="M326 244V152h72v92"></path>
+            <path d="M326 152l36-32 36 32"></path>
+            <path d="M431 244V106h70v138"></path>
+            <path d="M466 106V63"></path>
+            <path d="M452 79h28"></path>
+            <path d="M548 244V134h74v110"></path>
+            <path d="M548 134l37-48 37 48"></path>
+            <path d="M655 244V158h46v86"></path>
+            <path d="M678 158V70"></path>
+            <path d="M663 88l15-18 15 18"></path>
+          </g>
+          <g class="lineart-detail">
+            <path d="M238 153h16m22 0h16M238 178h16m22 0h16"></path>
+            <path d="M346 178h16m18 0h16M346 203h16m18 0h16"></path>
+            <path d="M449 136h13m23 0h13M449 166h13m23 0h13M449 196h13m23 0h13"></path>
+            <path d="M568 165h14m20 0h14M568 194h14m20 0h14"></path>
+            <path d="M74 244h650"></path>
+            <circle cx="572" cy="298" r="22"></circle>
+            <circle cx="648" cy="298" r="22"></circle>
+            <path d="M572 298l31-42 45 42h-76l32-1 18-33"></path>
+            <path d="M603 256h30m-12 0 8-16m-39 16-12-15"></path>
+          </g>
+        </svg>
         <div class="hero-copy">
           <div class="eyebrow"><span></span>MIT Critical Data presents</div>
           <h1>
             <span>AI as a</span>
-            <em>Catalyst.</em>
+            <span>Catalyst</span>
+            <em>Copenhagen</em>
           </h1>
-          <p class="hero-kicker">Copenhagen</p>
+          <p class="hero-kicker">Reimagining Health Innovation</p>
           <p class="hero-subtitle">
-            Reimagining health innovation beyond techno-solutionism.
+            Copenhagen gathering on AI, healthcare, patient voices, and community-led
+            evaluation.
           </p>
           <div class="hero-meta" aria-label="Event details">
-            <span>Friday, August 14, 2026</span>
+            <span><i></i>August 14, 2026</span>
             <span>DTU Skylab, Copenhagen</span>
             <strong>Free to attend</strong>
           </div>
           <div class="hero-actions">
-            <a class="button primary" href="#apply">Apply to attend</a>
-            <a class="button ghost" href="#about">Learn more</a>
-          </div>
-        </div>
-        <div class="hero-panel" aria-label="Event themes">
-          <p class="panel-label">Core question</p>
-          <p class="panel-quote">
-            Are we solving a problem, or only treating the symptoms of a broken system?
-          </p>
-          <div class="theme-stack">
-            <span>Reflection</span>
-            <span>Reimagination</span>
-            <span>Reinvigoration</span>
+            <a class="button primary pending-link" href="#apply">
+              <span>Apply to Attend</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+            <a class="learn-link" href="#about">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 5v14"></path>
+                <path d="m19 12-7 7-7-7"></path>
+              </svg>
+              Learn more about the gathering
+            </a>
           </div>
         </div>
       </section>
@@ -296,15 +340,31 @@
               Share the page now, then add the registration link here when the Copenhagen
               application form is ready.
             </p>
-            <span class="button primary pending-link">Registration link coming soon</span>
+            <a class="button primary pending-link" href="#apply">
+              <span>Registration link coming soon</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
           </div>
         </div>
       </section>
     </main>
 
+    <a class="floating-cta pending-link" href="#apply" aria-label="Apply to attend">
+      <span class="ping"></span>
+      <span>Apply to Attend</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M5 12h14"></path>
+        <path d="m12 5 7 7-7 7"></path>
+      </svg>
+    </a>
+
     <footer class="footer">
       <p>AI as a Catalyst Copenhagen · August 14, 2026 · DTU Skylab</p>
       <a href="#top">Back to top</a>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>
