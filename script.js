@@ -140,6 +140,9 @@
   let height = 0;
   let ratio = 1;
   let frameId = 0;
+  let isAnimating = false;
+  let lastFrameTime = 0;
+  const targetFps = 60;
 
   const resetParticle = (particle) => {
     particle.x = Math.random() * width;
@@ -167,12 +170,26 @@
     }
   };
 
-  const draw = () => {
+  const stopAnimation = () => {
+    isAnimating = false;
+    window.cancelAnimationFrame(frameId);
+    frameId = 0;
+    lastFrameTime = 0;
+  };
+
+  const draw = (timestamp) => {
+    if (!isAnimating) return;
+
+    if (!lastFrameTime) lastFrameTime = timestamp;
+    const deltaSeconds = Math.min((timestamp - lastFrameTime) / 1000, 0.05);
+    lastFrameTime = timestamp;
+    const frameScale = deltaSeconds * targetFps;
+
     ctx.clearRect(0, 0, width, height);
 
     for (const particle of particles) {
-      particle.x += particle.vx;
-      particle.y += particle.vy;
+      particle.x += particle.vx * frameScale;
+      particle.y += particle.vy * frameScale;
 
       if (particle.x < -10) particle.x = width + 10;
       if (particle.x > width + 10) particle.x = -10;
@@ -208,14 +225,21 @@
     frameId = window.requestAnimationFrame(draw);
   };
 
+  const startAnimation = () => {
+    if (isAnimating) return;
+    isAnimating = true;
+    lastFrameTime = 0;
+    frameId = window.requestAnimationFrame(draw);
+  };
+
   resize();
-  draw();
+  startAnimation();
   window.addEventListener("resize", resize);
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
-      window.cancelAnimationFrame(frameId);
+      stopAnimation();
     } else {
-      draw();
+      startAnimation();
     }
   });
 })();
