@@ -594,7 +594,15 @@ main,
 }
 
 .host-grid {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.host-grid div {
+  grid-column: span 2;
+}
+
+.host-grid div:nth-last-child(-n + 2) {
+  grid-column: span 3;
 }
 
 .host-grid div,
@@ -925,6 +933,10 @@ main,
   .theme-grid,
   .workshop-grid {
     grid-template-columns: 1fr;
+  }
+
+  .host-grid div {
+    grid-column: auto;
   }
 
   .people-grid {
